@@ -11,9 +11,9 @@ const productService = {
     return product;
   },
 
-  create: async ({ name }) => {
-    const product = await productModel.create({ name });
-    return { data: product };
+  create: async (name) => {
+    const product = await productModel.create(name);
+    return product;
   },
 };
 
