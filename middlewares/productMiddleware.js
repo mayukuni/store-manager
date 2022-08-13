@@ -11,7 +11,7 @@ const nameValidator = (req, res, next) => {
 
 const idValidator = async (req, res, next) => {
   const { id } = req.params;
-  const idExists = await productService.getProductById(id);
+  const idExists = await productService.getById(id);
   if (!idExists) return res.status(404).json({ message: 'Product not found' });
   next();
 };
