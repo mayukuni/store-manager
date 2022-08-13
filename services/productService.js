@@ -15,6 +15,11 @@ const productService = {
     const product = await productModel.create(name);
     return product;
   },
+
+  delete: async (id) => {
+    const product = await productModel.delete(id);
+    return product;
+  },
 };
 
 module.exports = productService;

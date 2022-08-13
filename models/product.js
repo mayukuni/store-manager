@@ -2,17 +2,14 @@ const connection = require('./connection');
 
 const productModel = {
   getAllProducts: async () => {
-    const [products] = await connection.execute(
-      'SELECT * FROM StoreManager.products',
-    );
+    const sql = 'SELECT * FROM StoreManager.products';
+    const [products] = await connection.execute(sql);
     return products;
   },
   
   getProductById: async (id) => {
-    const [[product]] = await connection.execute(
-      'SELECT * FROM StoreManager.products WHERE id = ?',
-      [id],
-    );
+    const sql = 'SELECT * FROM StoreManager.products WHERE id = ?';
+    const [[product]] = await connection.execute(sql, [id]);
     return product;
   },
 
@@ -20,6 +17,12 @@ const productModel = {
     const sql = 'INSERT INTO StoreManager.products (name) VALUES (?)';
     const [product] = await connection.execute(sql, [name]);
     return { id: product.insertId, name };
+  },
+
+  delete: async (id) => {
+    const sql = 'DELETE FROM StoreManager.products WHERE id = ?';
+    const product = await connection.execute(sql, [id]);
+    return product;
   },
 };
 

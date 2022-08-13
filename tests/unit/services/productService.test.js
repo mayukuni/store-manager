@@ -3,6 +3,7 @@ const productModel = require('../../../models/product');
 const { expect } = require('chai');
 const sinon = require('sinon');
 
+
 describe('ProductService', () => {
   beforeEach(sinon.restore);
   // beforeEach(() => {
@@ -52,4 +53,5 @@ describe('ProductService', () => {
       expect(product).to.be.undefined;
     });
   })
+
 })
