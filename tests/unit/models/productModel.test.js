@@ -6,7 +6,7 @@ const { expect } = require('chai');
 describe('ProductModel', () => {
   beforeEach(sinon.restore);
 
-  describe('#getAllProducts', () => {
+  describe('#getAll', () => {
     const mock = [
 	    {
 		    "id": 1,
@@ -24,12 +24,12 @@ describe('ProductModel', () => {
 
     it('deve retornar um array com a lista de produtos', async () => {
       sinon.stub(connection, 'execute').resolves([mock]);
-      const product = await productModel.getAllProducts();
+      const product = await productModel.getAll();
       expect(product).to.be.an('array');
     });
   })
 
-  describe('#getProductById', () => {
+  describe('#getById', () => {
     const mock = [
     	{
 	    	"id": 1,
@@ -38,7 +38,7 @@ describe('ProductModel', () => {
     ];
     
     it('deve retornar o produto específico', async () => {
-      const product = await productModel.getProductById(1);
+      const product = await productModel.getById(1);
       sinon.stub(connection, 'execute').resolves([[mock]]);
       expect(product).to.be.equal(product);
     });
@@ -46,7 +46,7 @@ describe('ProductModel', () => {
     it('deve retornar undefined se retornar um array vazio', async () => {
       sinon.stub(connection, 'execute').resolves([[]]);
 
-      const product = await productModel.getProductById(1);
+      const product = await productModel.getById(1);
       expect(product).to.be.undefined;
     });
   })

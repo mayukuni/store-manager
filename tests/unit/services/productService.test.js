@@ -32,24 +32,24 @@ describe('ProductService', () => {
   	},
   ];
   
-  describe('#getAllProducts', () => {
+  describe('#getAll', () => {
     it('deve retornar um array com a lista de produtos', async () => {
-      const products = await productService.getAllProducts()
-      sinon.stub(productModel, 'getAllProducts').resolves(mock);
+      const products = await productService.getAll()
+      sinon.stub(productModel, 'getAll').resolves(mock);
       expect(products).to.be.an('array');
     });
   })
   
-  describe('#getProductById', () => {
+  describe('#getById', () => {
     it('deve retornar um objeto', async () => {
-      const product = await productService.getProductById(1);
-      sinon.stub(productModel, 'getProductById').resolves(mockObj);
+      const product = await productService.getById(1);
+      sinon.stub(productModel, 'getById').resolves(mockObj);
       expect(product).to.be.an('object');
     });
 
     it('deve retornar undefined se retornar um array vazio', async () => {
-      const product = await productService.getProductById(1001);
-      sinon.stub(productModel, 'getProductById').resolves(undefined);
+      const product = await productService.getById(1001);
+      sinon.stub(productModel, 'getById').resolves(undefined);
       expect(product).to.be.undefined;
     });
   })
