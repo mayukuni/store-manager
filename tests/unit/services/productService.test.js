@@ -41,17 +41,25 @@ describe('ProductService', () => {
   })
   
   describe('#getById', () => {
-    it('deve retornar um objeto', async () => {
+    it('deve retornar o produto específico', async () => {
       const product = await productService.getById(1);
       sinon.stub(productModel, 'getById').resolves(mockObj);
-      expect(product).to.be.an('object');
-    });
+      expect(product).to.be.equal(product);
+    }
+    )
 
-    it('deve retornar undefined se retornar um array vazio', async () => {
+    it('deve retornar undefined quando o id não existe', async () => {
       const product = await productService.getById(1001);
       sinon.stub(productModel, 'getById').resolves(undefined);
       expect(product).to.be.undefined;
     });
   })
 
+  describe('#create', () => {
+    it('deve retornar um objeto com o produto criado', async () => {
+      const product = await productService.create('Martelo de Thor');
+      sinon.stub(productModel, 'create').resolves(mockObj);
+      expect(product).to.be.an('object');
+    });
+  })
 })
