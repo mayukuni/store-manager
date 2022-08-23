@@ -1,7 +1,6 @@
 const productController = require('../../../controllers/productController');
 const productService = require('../../../services/productService');
 const sinon = require('sinon');
-
 const { expect } = require('chai');
 
 describe('ProductController', () => {
@@ -32,6 +31,7 @@ describe('ProductController', () => {
   describe('#getAll', () => {
     it('deve retornar um array com a lista de produtos e status 200', async () => {
       sinon.stub(productService, 'getAll').resolves(mock);
+
       const req = {};
       const res = {};
 
@@ -40,8 +40,8 @@ describe('ProductController', () => {
 
       await productController.getAll(req, res);
 
-      expect(res.status.calledWith(200)).to.be.eq(true);
-      expect(res.json.calledWith(mock)).to.be.eq(true);
+      expect(res.status.calledWith(200)).to.be.true;
+      expect(res.json.calledWith(mock)).to.be.true;
     });
   });
 
@@ -62,6 +62,7 @@ describe('ProductController', () => {
       expect(res.status.calledWith(200)).to.be.true;
       expect(res.json.calledWith(mockObj)).to.be.true;
     });
+
     it('deve retornar status 404 quando o id não existe', async () => {
       sinon.stub(productService, 'getById').resolves(null);
 
