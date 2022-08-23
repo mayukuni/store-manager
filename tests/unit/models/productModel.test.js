@@ -65,4 +65,19 @@ describe('ProductModel', () => {
       expect(product).to.be.an('object');
     });
   });
+
+  describe('#delete', () => {
+    const mock = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      },
+    ];
+    
+    it('deve deletar o produto e retornar undefined', async () => {
+      const product = await productModel.delete(1);
+      sinon.stub(connection, 'execute').resolves([[mock]]);
+      expect(product).to.contain(undefined);
+    });
+  });
 });

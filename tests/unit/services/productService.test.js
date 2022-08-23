@@ -38,22 +38,21 @@ describe('ProductService', () => {
       sinon.stub(productModel, 'getAll').resolves(mock);
       expect(products).to.be.an('array');
     });
-  })
+  });
   
   describe('#getById', () => {
     it('deve retornar o produto específico', async () => {
       const product = await productService.getById(1);
       sinon.stub(productModel, 'getById').resolves(mockObj);
       expect(product).to.be.equal(product);
-    }
-    )
+    });
 
     it('deve retornar undefined quando o id não existe', async () => {
       const product = await productService.getById(1001);
       sinon.stub(productModel, 'getById').resolves(undefined);
       expect(product).to.be.undefined;
     });
-  })
+  });
 
   describe('#create', () => {
     it('deve retornar um objeto com o produto criado', async () => {
@@ -61,5 +60,13 @@ describe('ProductService', () => {
       sinon.stub(productModel, 'create').resolves(mockObj);
       expect(product).to.be.an('object');
     });
-  })
-})
+  });
+    
+  describe('#delete', () => {
+    it('deve deletar o produto e retornar undefined', async () => {
+      const product = await productService.delete(1);
+      sinon.stub(productModel, 'delete').resolves(mockObj);
+      expect(product).to.contain(undefined);
+    });
+  });
+});

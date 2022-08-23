@@ -81,7 +81,7 @@ describe('ProductController', () => {
 
   });
 
-  describe('#create', () => { 
+  describe('#create', () => {
     it('deve retornar um objeto com o produto criado e status 201', async () => {
       sinon.stub(productService, 'create').resolves(mockObj);
       const req = {};
@@ -96,7 +96,23 @@ describe('ProductController', () => {
 
       expect(res.status.calledWith(201)).to.be.true;
       expect(res.json.calledWith(mockObj)).to.be.true;
-    }
-    );
-  })
+    });
+  });
+
+  describe('#delete', () => {
+    it('deve deletar o produto e retornar status 204', async () => {
+      sinon.stub(productService, 'delete').resolves(true);
+      const req = {};
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub();
+
+      req.params = { id: 1 };
+
+      await productController.delete(req, res);
+
+      expect(res.status.calledWith(204)).to.be.true;
+    });
+  });
 })
